@@ -8,7 +8,7 @@ require( 'dotenv' ).config();
 const cors = require( 'cors' );
 
 // Autoriser tous les domaines à accéder à la ressource
-const PORT = process.env.PORT || 3001;
+const PORT = 4505;
 
 const indexRouter = require( './routes/auth' );
 const clientRouter = require( './routes/client' );
