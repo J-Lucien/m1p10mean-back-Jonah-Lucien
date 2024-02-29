@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "jest --watchAll",
-    "server": "nodemon app.js"
+    "server": "nodemon app.js",
+    "build": "babel src -d dist"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
