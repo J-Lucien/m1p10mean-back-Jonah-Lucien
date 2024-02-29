@@ -35,6 +35,9 @@ const db = mongoose.connection;
 db.on( 'error', console.error.bind( console, 'Erreur de connexion à MongoDB :' ) );
 db.once( 'open', () => {
   console.log( 'Connecté à la base de données MongoDB' );
+  app.listen( PORT, () => {
+    console.log( `Serveur en cours d'exécution sur le port ${PORT}` );
+  } );
 } );
 
 app.use( '/auth', indexRouter );
@@ -44,9 +47,6 @@ app.use( '/employees', employeRouter );
 app.use( '/services', serviceRouter );
 app.use( '/rendez-vous', rendezVousRouter );
 
-app.listen( PORT, () => {
-  console.log( `Serveur en cours d'exécution sur le port ${PORT}` );
-} );
 
 
 module.exports = app;
