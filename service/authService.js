@@ -106,8 +106,8 @@ async function login( email, motDePasse ) {
         const token = jwt.sign( {
             email: user.email,
             role: user.role
-        }, process.env.SECRET_KEY, {
-            expiresIn: process.env.TOKEN_PERIOD
+        }, 'hBb3MmlyZQKD6ckVFMtC9M7CYHvA5W6f', {
+            expiresIn: '2h'
         } );
         return {
             token,

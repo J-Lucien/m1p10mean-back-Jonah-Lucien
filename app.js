@@ -29,7 +29,7 @@ app.use( express.static( path.join( __dirname, 'public' ) ) );
 app.use( cors() );
 //  app.use(verifyToken)
 
-mongoose.connect( process.env.MONGO_URI );
+mongoose.connect( 'mongodb+srv://jtolojanahary5:A1NYRdGIqctB8FPA@mongodbcluster.8z1hiuf.mongodb.net/salon-beaute?retryWrites=true&w=majority&appName=mongodbCluster' );
 
 const db = mongoose.connection;
 db.on( 'error', console.error.bind( console, 'Erreur de connexion à MongoDB :' ) );

@@ -20,7 +20,7 @@ const verifyToken = ( req, res, next ) => {
         const token = req.header( 'Authorization' ).split( ' ' )[ 1 ];
         console.log( "🚀 ~ app.use ~ token:", token );
 
-        jwt.verify( token, process.env.SECRET_KEY, ( err, decode ) => {
+        jwt.verify( token, 'hBb3MmlyZQKD6ckVFMtC9M7CYHvA5W6f', ( err, decode ) => {
             if ( err ) {
                 console.log( "🚀 ~ jwt.verify ~ err:", err );
                 return res.status( 403 ).json( {
