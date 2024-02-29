@@ -4,7 +4,6 @@ const path = require( 'path' );
 const cookieParser = require( 'cookie-parser' );
 const logger = require( 'morgan' );
 const mongoose = require( 'mongoose' );
-require( 'dotenv' ).config();
 const cors = require( 'cors' );
 
 // Autoriser tous les domaines à accéder à la ressource
@@ -29,16 +28,22 @@ app.use( express.static( path.join( __dirname, 'public' ) ) );
 app.use( cors() );
 //  app.use(verifyToken)
 
-mongoose.connect( 'mongodb+srv://jtolojanahary5:A1NYRdGIqctB8FPA@mongodbcluster.8z1hiuf.mongodb.net/salon-beaute?retryWrites=true&w=majority&appName=mongodbCluster' );
+// mongoose.connect( 'mongodb+srv://jtolojanahary5:A1NYRdGIqctB8FPA@mongodbcluster.8z1hiuf.mongodb.net/salon-beaute?retryWrites=true&w=majority&appName=mongodbCluster' );
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect( 'mongodb+srv://jtolojanahary5:A1NYRdGIqctB8FPA@mongodbcluster.8z1hiuf.mongodb.net/salon-beaute?retryWrites=true&w=majority&appName=mongodbCluster' );
+    console.log( `MongoDB Connected: ${conn.connection.host}` );
+  } catch ( error ) {
+    console.log( error );
+    process.exit( 1 );
+  }
+}
 
-const db = mongoose.connection;
-db.on( 'error', console.error.bind( console, 'Erreur de connexion à MongoDB :' ) );
-db.once( 'open', () => {
-  console.log( 'Connecté à la base de données MongoDB' );
+connectDB().then( () => {
   app.listen( PORT, () => {
-    console.log( `Serveur en cours d'exécution sur le port ${PORT}` );
-  } );
-} );
+    console.log( "listening for requests" );
+  } )
+} )
 
 app.use( '/auth', indexRouter );
 app.use( '/clients', clientRouter );
